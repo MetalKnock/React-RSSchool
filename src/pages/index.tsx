@@ -1,13 +1,20 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import AboutUs from './AboutUs';
-import NotFound from './NotFound';
+import { Header } from '../components/Header';
+import { RoutePath } from '../shared/config/constants';
+import { AboutUs } from './AboutUs';
+import { Main } from './Main';
+import { NotFound } from './NotFound';
 
 export default function Routing() {
   return (
-    <Routes>
-      <Route path="about-us" element={<AboutUs />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <Header />
+      <Routes>
+        <Route path={RoutePath.main} element={<Main />} />
+        <Route path={RoutePath.aboutUs} element={<AboutUs />} />
+        <Route path={RoutePath.notFound} element={<NotFound />} />
+      </Routes>
+    </>
   );
 }

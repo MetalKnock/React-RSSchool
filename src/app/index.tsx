@@ -1,11 +1,11 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import Routing from '../pages';
+import { withProviders } from './providers';
 
-export default function App() {
-  return (
-    <BrowserRouter>
-      <Routing />
-    </BrowserRouter>
-  );
+import './styles/index.scss';
+
+function App() {
+  return <Routing />;
 }
+
+export default withProviders(App);
