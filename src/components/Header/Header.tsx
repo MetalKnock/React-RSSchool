@@ -13,7 +13,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   }
   render() {
     return (
-      <nav>
+      <nav className="container">
         <ul className={styles.header__list}>
           <li className={styles.header__item}>
             <Link to={RoutePath.main}>Main</Link>
