@@ -1,0 +1,30 @@
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 10px;
+  }
+
+  &__label {
+    display: flex;
+  }
+
+  &__input {
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+  }
+
+  &__icon {
+    width: 18px;
+    height: 18px;
+    padding: 5px;
+  }
+}
