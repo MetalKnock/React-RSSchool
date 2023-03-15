@@ -1,5 +1,6 @@
 import React from 'react';
+import styles from './AboutUs.module.scss';
 
 export default function AboutUs() {
-  return <div className="container">About Us</div>;
+  return <h1 className={`${styles.aboutUs} container`}>About Us</h1>;
 }

@@ -1,20 +1,27 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { Header } from '../components/Header';
+import { createBrowserRouter } from 'react-router-dom';
+import { Root } from '../components/Root';
 import { RoutePath } from '../shared/config/constants';
 import { AboutUs } from './AboutUs';
 import { Main } from './Main';
 import { NotFound } from './NotFound';
 
-export default function Routing() {
-  return (
-    <>
-      <Header />
-      <Routes>
-        <Route path={RoutePath.main} element={<Main />} />
-        <Route path={RoutePath.aboutUs} element={<AboutUs />} />
-        <Route path={RoutePath.notFound} element={<NotFound />} />
-      </Routes>
-    </>
-  );
-}
+export const router = createBrowserRouter([
+  {
+    element: <Root />,
+    children: [
+      {
+        path: RoutePath.main,
+        element: <Main />,
+      },
+      {
+        path: RoutePath.aboutUs,
+        element: <AboutUs />,
+      },
+      {
+        path: RoutePath.notFound,
+        element: <NotFound />,
+      },
+    ],
+  },
+]);

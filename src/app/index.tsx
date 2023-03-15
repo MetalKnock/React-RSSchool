@@ -1,11 +1,10 @@
 import React from 'react';
-import Routing from '../pages';
-import { withProviders } from './providers';
-
+import { RouterProvider } from 'react-router-dom';
+import { router } from '../pages';
 import './styles/index.scss';
 
 function App() {
-  return <Routing />;
+  return <RouterProvider router={router} />;
 }
 
-export default withProviders(App);
+export default App;

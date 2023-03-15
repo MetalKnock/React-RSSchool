@@ -1,6 +1,5 @@
 import React from 'react';
 import { Character } from '../../shared/api/types';
-import { LOCALE } from '../../shared/config/constants';
 import styles from './Card.module.scss';
 
 interface CardProps {
