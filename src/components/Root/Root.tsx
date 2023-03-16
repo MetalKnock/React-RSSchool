@@ -1,4 +1,3 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { WithLocation } from '../../hoc/WithLocation';
 import Header, { HeaderProps } from '../Header/Header';

@@ -13,11 +13,11 @@ class CardList extends React.Component<CardListProps, CardListState> {
   }
   render() {
     return (
-      <div className={styles.cardList}>
+      <ul className={styles.cardList}>
         {characters.map((character) => (
           <Card key={character.id} character={character} />
         ))}
-      </div>
+      </ul>
     );
   }
 }

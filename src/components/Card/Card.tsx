@@ -14,7 +14,7 @@ class Card extends React.Component<CardProps, CardState> {
   }
   render() {
     return (
-      <div className={styles.card}>
+      <li className={styles.card}>
         <div className={styles.card__header}>
           <img className={styles.card__image} src={this.props.character.image} />
           <div className={styles.card__statusWrapper}>
@@ -28,7 +28,7 @@ class Card extends React.Component<CardProps, CardState> {
             Number of episodes: {this.props.character.episode.length}
           </div>
         </div>
-      </div>
+      </li>
     );
   }
 }

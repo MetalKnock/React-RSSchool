@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { RoutePath } from '../../shared/config/constants';
+import { PageTitles, RoutePath } from '../../shared/config/constants';
 import { WithLocationProps } from '../../hoc/WithLocation/WithLocation';
 import styles from './Header.module.scss';
 
@@ -16,11 +16,11 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   defineCurrentPage() {
     switch (this.props.location.pathname) {
       case RoutePath.main:
-        return 'Main';
+        return PageTitles.main;
       case RoutePath.aboutUs:
-        return 'About Us';
+        return PageTitles.aboutUs;
       default:
-        return '404';
+        return PageTitles.notFound;
     }
   }
 
@@ -36,6 +36,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                 ? `${styles.header__item} ${styles.header__item_active}`
                 : styles.header__item
             }
+            data-testid="mainLink"
           >
             Main
           </NavLink>
@@ -46,6 +47,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                 ? `${styles.header__item} ${styles.header__item_active}`
                 : styles.header__item
             }
+            data-testid="aboutUsLink"
           >
             About Us
           </NavLink>
