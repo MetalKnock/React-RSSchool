@@ -9,7 +9,8 @@ export default function WithLocation<Props extends WithLocationProps>(
   Component: React.ComponentType<Props>
 ) {
   function ComponentWithLocationProp(props: Omit<Props, keyof WithLocationProps>) {
-    let location = useLocation();
+    const location = useLocation();
+    // eslint-disable-next-line react/jsx-props-no-spreading
     return <Component {...(props as Props)} location={location} />;
   }
 

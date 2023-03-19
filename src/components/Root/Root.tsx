@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
 import { WithLocation } from '../../hoc/WithLocation';
-import Header, { HeaderProps } from '../Header/Header';
+import Header from '../Header/Header';
 
 export default function Root() {
-  const HeaderWithLocation = WithLocation<HeaderProps>(Header);
+  const HeaderWithLocation = WithLocation(Header);
   return (
     <>
       <HeaderWithLocation />

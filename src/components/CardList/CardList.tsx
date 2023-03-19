@@ -3,14 +3,7 @@ import { characters } from '../../shared/api/mock';
 import Card from '../Card/Card';
 import styles from './CardList.module.scss';
 
-interface CardListProps {}
-
-interface CardListState {}
-
-class CardList extends React.Component<CardListProps, CardListState> {
-  constructor(props: CardListProps) {
-    super(props);
-  }
+class CardList extends React.PureComponent {
   render() {
     return (
       <ul className={styles.cardList}>

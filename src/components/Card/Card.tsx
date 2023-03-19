@@ -6,26 +6,26 @@ interface CardProps {
   character: Character;
 }
 
-interface CardState {}
-
-class Card extends React.Component<CardProps, CardState> {
-  constructor(props: CardProps) {
-    super(props);
-  }
+class Card extends React.PureComponent<CardProps> {
   render() {
+    const { character } = this.props;
     return (
       <li className={styles.card}>
         <div className={styles.card__header}>
-          <img className={styles.card__image} src={this.props.character.image} />
+          <img
+            className={styles.card__image}
+            src={character.image}
+            alt={`${character.name} avatar`}
+          />
           <div className={styles.card__statusWrapper}>
-            <div className={styles.card__status}>{this.props.character.status}</div>
+            <div className={styles.card__status}>{character.status}</div>
           </div>
         </div>
         <div className={styles.card__content}>
-          <div className={styles.card__name}>{this.props.character.name}</div>
-          <div className={styles.card__species}>{this.props.character.species}</div>
+          <div className={styles.card__name}>{character.name}</div>
+          <div className={styles.card__species}>{character.species}</div>
           <div className={styles.card__episodes}>
-            Number of episodes: {this.props.character.episode.length}
+            Number of episodes: {character.episode.length}
           </div>
         </div>
       </li>

@@ -1,7 +1,7 @@
 import { describe, expect } from 'vitest';
-import { Card } from './';
-import { characters } from '../../shared/api/mock';
 import { render, screen } from '@testing-library/react';
+import { Card } from '.';
+import { characters } from '../../shared/api/mock';
 
 describe('Card', () => {
   it('Card component is rendered and correct data is displayed', () => {

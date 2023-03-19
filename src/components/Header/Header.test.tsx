@@ -1,13 +1,12 @@
 import { describe, expect } from 'vitest';
-import { Header } from './';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { WithLocation } from '../../hoc/WithLocation';
-import { HeaderProps } from './Header';
-import { PageTitles } from '../../shared/config/constants';
 import { MemoryRouter } from 'react-router-dom';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { Header } from '.';
+import { WithLocation } from '../../hoc/WithLocation';
+import { PageTitles } from '../../shared/config/constants';
 
 describe('Header', () => {
-  const HeaderWithLocation = WithLocation<HeaderProps>(Header);
+  const HeaderWithLocation = WithLocation(Header);
 
   beforeEach(() => {
     render(

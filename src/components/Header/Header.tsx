@@ -4,17 +4,10 @@ import { PageTitles, RoutePath } from '../../shared/config/constants';
 import { WithLocationProps } from '../../hoc/WithLocation/WithLocation';
 import styles from './Header.module.scss';
 
-export interface HeaderProps extends WithLocationProps {}
-
-export interface HeaderState {}
-
-class Header extends React.Component<HeaderProps, HeaderState> {
-  constructor(props: HeaderProps) {
-    super(props);
-  }
-
+class Header extends React.Component<WithLocationProps> {
   defineCurrentPage() {
-    switch (this.props.location.pathname) {
+    const { location } = this.props;
+    switch (location.pathname) {
       case RoutePath.main:
         return PageTitles.main;
       case RoutePath.aboutUs:
