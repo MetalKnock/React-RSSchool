@@ -44,12 +44,6 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'import/prefer-default-export': 'off',
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: ['**/*.test.ts', '**/*.test.tsx'],
-      },
-    ],
   },
   settings: {
     react: {
