@@ -1,0 +1,7 @@
+.inputContainer {
+  &__label {
+    display: flex;
+    flex-direction: column;
+    text-transform: capitalize;
+  }
+}

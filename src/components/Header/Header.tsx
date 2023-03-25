@@ -12,6 +12,8 @@ class Header extends React.Component<WithLocationProps> {
         return PageTitles.main;
       case RoutePath.aboutUs:
         return PageTitles.aboutUs;
+      case RoutePath.formPage:
+        return PageTitles.formPage;
       default:
         return PageTitles.notFound;
     }
@@ -19,7 +21,7 @@ class Header extends React.Component<WithLocationProps> {
 
   render() {
     return (
-      <div className={`${styles.header} container`}>
+      <header className={`${styles.header} container`}>
         <h4>{this.defineCurrentPage()}</h4>
         <nav className={styles.header__list}>
           <NavLink
@@ -44,8 +46,18 @@ class Header extends React.Component<WithLocationProps> {
           >
             About Us
           </NavLink>
+          <NavLink
+            to={RoutePath.formPage}
+            className={(state) =>
+              state.isActive
+                ? `${styles.header__item} ${styles.header__item_active}`
+                : styles.header__item
+            }
+          >
+            Form page
+          </NavLink>
         </nav>
-      </div>
+      </header>
     );
   }
 }

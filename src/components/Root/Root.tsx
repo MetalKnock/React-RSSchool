@@ -7,7 +7,9 @@ export default function Root() {
   return (
     <>
       <HeaderWithLocation />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 }

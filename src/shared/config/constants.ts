@@ -1,6 +1,7 @@
 enum RoutePath {
   main = '/',
   aboutUs = '/about-us',
+  formPage = '/form-page',
   notFound = '*',
 }
 
@@ -8,6 +9,7 @@ enum PageTitles {
   main = 'Main',
   aboutUs = 'About Us',
   notFound = '404',
+  formPage = 'Form',
 }
 
 enum LocalStoragePath {
