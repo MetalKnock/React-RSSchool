@@ -1,6 +1,7 @@
 import React from 'react';
 import { KEY_LOCAL_STORAGE, LocalStoragePath } from '../../shared/config/constants';
 import { getLocalStorage } from '../../shared/lib/getLocalStorage';
+import { Button } from '../UI/Button';
 import imageUrl from './assets/searchIcon.svg';
 import styles from './SearchBar.module.scss';
 
@@ -46,7 +47,7 @@ class SearchBar extends React.Component<Record<string, never>, SearchBarState> {
             />
           </label>
         </div>
-        <button type="submit">search</button>
+        <Button isSubmit>search</Button>
       </form>
     );
   }

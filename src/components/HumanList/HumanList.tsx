@@ -11,8 +11,9 @@ interface HumanListProps {
 class HumanList extends React.PureComponent<HumanListProps> {
   render() {
     const { humans } = this.props;
+
     return (
-      <ul className={styles.HumanList}>
+      <ul className={styles.humanList}>
         {humans.map((human) => (
           <HumanCard key={human.id} human={human} />
         ))}

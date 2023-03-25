@@ -15,12 +15,12 @@ export default function InputContainer({
   children,
 }: InputContainerProps) {
   return (
-    <>
+    <div className={styles.inputContainer}>
       <label htmlFor={labelMessage} className={styles.inputContainer__label}>
-        {`${labelMessage}:`}
+        <p className={styles.inputContainer__labelMessage}>{`${labelMessage}`}</p>
         {children}
       </label>
-      {isError && <div>{errorMessage}</div>}
-    </>
+      {isError && <div className={styles.inputContainer__error}>{errorMessage}</div>}
+    </div>
   );
 }

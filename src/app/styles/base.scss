@@ -21,3 +21,8 @@
     max-width: $col-xl;
   }
 }
+@media (max-width: 600px) {
+  .container {
+    padding: 0;
+  }
+}

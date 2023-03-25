@@ -1,7 +1,8 @@
-import React, { createRef } from 'react';
+import React, { createRef, RefObject } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import HumanList from '../../components/HumanList/HumanList';
 import { InputContainer } from '../../components/InputContainer';
+import { Button } from '../../components/UI/Button';
 import { Human } from '../../shared/api/types';
 import styles from './Form.module.scss';
 
@@ -20,22 +21,25 @@ interface FormState {
 }
 
 class Form extends React.Component<Record<string, never>, FormState> {
-  nameRef: React.RefObject<HTMLInputElement>;
+  formRef: RefObject<HTMLFormElement>;
 
-  birthdayRef: React.RefObject<HTMLInputElement>;
+  nameRef: RefObject<HTMLInputElement>;
 
-  countryRef: React.RefObject<HTMLSelectElement>;
+  birthdayRef: RefObject<HTMLInputElement>;
 
-  agreementRef: React.RefObject<HTMLInputElement>;
+  countryRef: RefObject<HTMLSelectElement>;
 
-  maleRef: React.RefObject<HTMLInputElement>;
+  agreementRef: RefObject<HTMLInputElement>;
 
-  femaleRef: React.RefObject<HTMLInputElement>;
+  maleRef: RefObject<HTMLInputElement>;
 
-  avatarRef: React.RefObject<HTMLInputElement>;
+  femaleRef: RefObject<HTMLInputElement>;
+
+  avatarRef: RefObject<HTMLInputElement>;
 
   constructor(props: never) {
     super(props);
+    this.formRef = createRef<HTMLFormElement>();
     this.nameRef = createRef<HTMLInputElement>();
     this.birthdayRef = createRef<HTMLInputElement>();
     this.countryRef = createRef<HTMLSelectElement>();
@@ -97,39 +101,52 @@ class Form extends React.Component<Record<string, never>, FormState> {
     });
     if (Object.values(currentErrors).every((currentError) => !currentError)) {
       const { humans } = this.state;
-      this.setState((prevState) => {
-        return {
-          ...prevState,
-          humans: [
-            ...humans,
-            {
-              id: uuidv4(),
-              name: this.nameRef.current?.value || '',
-              birthday: this.birthdayRef.current?.value || '',
-              country: this.countryRef.current?.value || '',
-              agreement: this.agreementRef.current?.checked || false,
-              gender: this.maleRef.current?.checked ? 'male' : 'female',
-              avatar: this.avatarRef?.current?.files
-                ? URL.createObjectURL(this.avatarRef.current.files[0])
-                : '',
-            },
-          ],
-        };
-      });
+      this.setState(
+        (prevState) => {
+          return {
+            ...prevState,
+            humans: [
+              ...humans,
+              {
+                id: uuidv4(),
+                name: this.nameRef.current?.value || '',
+                birthday: this.birthdayRef.current?.value || '',
+                country: this.countryRef.current?.value || '',
+                agreement: this.agreementRef.current?.checked || false,
+                gender: this.maleRef.current?.checked ? 'male' : 'female',
+                avatar: this.avatarRef?.current?.files
+                  ? URL.createObjectURL(this.avatarRef.current.files[0])
+                  : '',
+              },
+            ],
+          };
+        },
+        () => {
+          this.formRef.current?.reset();
+        }
+      );
     }
   };
 
   render() {
     const { errors, humans } = this.state;
     return (
-      <>
-        <form className={styles.form} onSubmit={this.handleSubmit}>
+      <div className="container">
+        <form className={styles.form} onSubmit={this.handleSubmit} ref={this.formRef}>
+          <h2>Personal Info</h2>
+
           <InputContainer
             labelMessage="name"
             errorMessage="Please enter your name"
             isError={errors.name}
           >
-            <input type="text" id="name" ref={this.nameRef} placeholder="Enter name" />
+            <input
+              className={styles.form__input}
+              type="text"
+              id="name"
+              ref={this.nameRef}
+              placeholder="Enter name"
+            />
           </InputContainer>
 
           <InputContainer
@@ -137,50 +154,72 @@ class Form extends React.Component<Record<string, never>, FormState> {
             errorMessage="Please enter your birthday"
             isError={errors.birthday}
           >
-            <input type="date" id="birthday" ref={this.birthdayRef} />
+            <input
+              className={styles.form__input}
+              type="date"
+              id="birthday"
+              ref={this.birthdayRef}
+            />
           </InputContainer>
           <InputContainer
             labelMessage="country"
-            errorMessage="Please enter your country"
+            errorMessage="Please select a country from the list"
             isError={errors.country}
           >
-            <select id="country" ref={this.countryRef}>
+            <select className={styles.form__input} id="country" ref={this.countryRef}>
               <option>Pick a country</option>
               <option value="russia">Russia</option>
               <option value="belarus">Belarus</option>
               <option value="armenia">Armenia</option>
             </select>
           </InputContainer>
-          <InputContainer
-            labelMessage="agreement"
-            errorMessage="Please enter your agreement"
-            isError={errors.agreement}
-          >
-            <input type="checkbox" id="agreement" ref={this.agreementRef} />
-          </InputContainer>
-          <div>
-            Gender:
-            <label htmlFor="male">
-              male
-              <input type="radio" id="male" name="gender" ref={this.maleRef} />
-            </label>
-            <label htmlFor="female">
-              female
-              <input type="radio" id="female" name="gender" ref={this.femaleRef} />
-            </label>
-            {errors.gender && <div>Please enter your gender</div>}
+          <div className={styles.form__gender}>
+            <p>Gender</p>
+            <div className={styles.form__genderInner}>
+              <label className={styles.form__label} htmlFor="male">
+                Male
+                <input
+                  className={styles.form__input}
+                  type="radio"
+                  id="male"
+                  name="gender"
+                  ref={this.maleRef}
+                />
+              </label>
+              <label className={styles.form__label} htmlFor="female">
+                Female
+                <input
+                  className={styles.form__input}
+                  type="radio"
+                  id="female"
+                  name="gender"
+                  ref={this.femaleRef}
+                />
+              </label>
+            </div>
+            {errors.gender && <div className={styles.form__genderError}>Please select gender</div>}
           </div>
           <InputContainer
             labelMessage="avatar"
-            errorMessage="Please enter your avatar"
+            errorMessage="Please upload your avatar"
             isError={errors.avatar}
           >
             <input type="file" id="avatar" ref={this.avatarRef} />
           </InputContainer>
-          <button type="submit">Create card</button>
+          <InputContainer
+            labelMessage=""
+            errorMessage="Please enter your agreement"
+            isError={errors.agreement}
+          >
+            <div style={{ display: 'flex', gap: '10px', textTransform: 'none' }}>
+              <div>I consent to my personal data</div>
+              <input type="checkbox" id="agreement" ref={this.agreementRef} />
+            </div>
+          </InputContainer>
+          <Button isSubmit>Create card</Button>
         </form>
         <HumanList humans={humans} />
-      </>
+      </div>
     );
   }
 }

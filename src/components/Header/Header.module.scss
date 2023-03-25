@@ -1,8 +1,10 @@
-@import '../../app/styles/vars.scss';
-
 .header {
-  display: flex;
-  justify-content: space-between;
+  @include shadow;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
 
   &__list {
     display: flex;
