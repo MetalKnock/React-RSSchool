@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   text-align: center;
+  background-color: $green;
   @include transition;
 
   &_show {
@@ -17,14 +18,5 @@
     opacity: 0;
     height: 0;
     overflow: hidden;
-  }
-
-  &_success {
-    background-color: $green;
-  }
-
-  &_reject {
-    background-color: $red;
-    color: $white;
   }
 }

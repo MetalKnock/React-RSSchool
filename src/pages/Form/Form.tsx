@@ -228,7 +228,7 @@ class Form extends React.Component<Record<string, never>, FormState> {
           <Button isSubmit>Create card</Button>
         </form>
         <HumanList humans={humans} />
-        <Toast notification="Data saved" show={isAlertVisible} isSuccess />
+        <Toast notification="Data saved" show={isAlertVisible} />
       </div>
     );
   }
