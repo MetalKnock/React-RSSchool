@@ -2,6 +2,7 @@ import React, { createRef, RefObject } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import HumanList from '../../components/HumanList/HumanList';
 import { InputContainer } from '../../components/InputContainer';
+import { Toast } from '../../components/Toast';
 import { Button } from '../../components/UI/Button';
 import { Human } from '../../shared/api/types';
 import styles from './Form.module.scss';
@@ -18,6 +19,7 @@ interface Errors {
 interface FormState {
   errors: Errors;
   humans: Human[];
+  isAlertVisible: boolean;
 }
 
 class Form extends React.Component<Record<string, never>, FormState> {
@@ -57,6 +59,7 @@ class Form extends React.Component<Record<string, never>, FormState> {
         avatar: false,
       },
       humans: [],
+      isAlertVisible: false,
     };
   }
 
@@ -119,9 +122,15 @@ class Form extends React.Component<Record<string, never>, FormState> {
                   : '',
               },
             ],
+            isAlertVisible: true,
           };
         },
         () => {
+          setTimeout(() => {
+            this.setState((prevState) => {
+              return { ...prevState, isAlertVisible: false };
+            });
+          }, 2000);
           this.formRef.current?.reset();
         }
       );
@@ -129,7 +138,7 @@ class Form extends React.Component<Record<string, never>, FormState> {
   };
 
   render() {
-    const { errors, humans } = this.state;
+    const { errors, humans, isAlertVisible } = this.state;
     return (
       <div className="container">
         <form className={styles.form} onSubmit={this.handleSubmit} ref={this.formRef}>
@@ -208,7 +217,7 @@ class Form extends React.Component<Record<string, never>, FormState> {
           </InputContainer>
           <InputContainer
             labelMessage=""
-            errorMessage="Please enter your agreement"
+            errorMessage="Please check the box"
             isError={errors.agreement}
           >
             <div style={{ display: 'flex', gap: '10px', textTransform: 'none' }}>
@@ -219,6 +228,7 @@ class Form extends React.Component<Record<string, never>, FormState> {
           <Button isSubmit>Create card</Button>
         </form>
         <HumanList humans={humans} />
+        <Toast notification="Data saved" show={isAlertVisible} isSuccess />
       </div>
     );
   }

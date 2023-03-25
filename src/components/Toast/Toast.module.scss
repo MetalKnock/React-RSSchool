@@ -1,0 +1,30 @@
+.toast {
+  position: fixed;
+  right: 10%;
+  bottom: 5%;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  @include transition;
+
+  &_show {
+    display: block;
+  }
+
+  &_hidden {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  &_success {
+    background-color: $green;
+  }
+
+  &_reject {
+    background-color: $red;
+    color: $white;
+  }
+}

@@ -29,7 +29,9 @@
 
   &__text {
     text-transform: capitalize;
+    word-wrap: anywhere;
   }
+
   &__inner {
     display: flex;
     justify-content: space-around;
