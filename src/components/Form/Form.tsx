@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Human } from '../../shared/api/types';
 import { InputContainer } from '../InputContainer';
 import { Button } from '../UI/Button';
-import { Errors } from './config';
+import { ErrorMessages, Errors } from './config';
 import styles from './Form.module.scss';
 
 interface GeneratorState {
@@ -96,11 +96,7 @@ class Form extends React.PureComponent<FormProps, GeneratorState> {
     return (
       <form className={styles.form} onSubmit={this.handleSubmit} ref={this.formRef}>
         <h2>Personal Info</h2>
-        <InputContainer
-          labelMessage="name"
-          errorMessage="Please enter your name"
-          isError={errors.name}
-        >
+        <InputContainer labelMessage="name" errorMessage={ErrorMessages.name} isError={errors.name}>
           <input
             className={styles.form__input}
             type="text"
@@ -111,14 +107,14 @@ class Form extends React.PureComponent<FormProps, GeneratorState> {
         </InputContainer>
         <InputContainer
           labelMessage="birthday"
-          errorMessage="Please enter your birthday"
+          errorMessage={ErrorMessages.birthday}
           isError={errors.birthday}
         >
           <input className={styles.form__input} type="date" id="birthday" ref={this.birthdayRef} />
         </InputContainer>
         <InputContainer
           labelMessage="country"
-          errorMessage="Please select a country from the list"
+          errorMessage={ErrorMessages.country}
           isError={errors.country}
         >
           <select className={styles.form__input} id="country" ref={this.countryRef}>
@@ -152,18 +148,18 @@ class Form extends React.PureComponent<FormProps, GeneratorState> {
               />
             </label>
           </div>
-          {errors.gender && <div className={styles.form__genderError}>Please select gender</div>}
+          {errors.gender && <div className={styles.form__genderError}>{ErrorMessages.gender}</div>}
         </div>
         <InputContainer
           labelMessage="avatar"
-          errorMessage="Please upload your avatar"
+          errorMessage={ErrorMessages.avatar}
           isError={errors.avatar}
         >
           <input type="file" id="avatar" ref={this.avatarRef} />
         </InputContainer>
         <InputContainer
           labelMessage=""
-          errorMessage="Please check the box"
+          errorMessage={ErrorMessages.agreement}
           isError={errors.agreement}
         >
           <div style={{ display: 'flex', gap: '10px', textTransform: 'none' }}>
