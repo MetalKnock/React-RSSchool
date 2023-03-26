@@ -12,8 +12,8 @@ class Header extends React.Component<WithLocationProps> {
         return PageTitles.main;
       case RoutePath.aboutUs:
         return PageTitles.aboutUs;
-      case RoutePath.formPage:
-        return PageTitles.formPage;
+      case RoutePath.cardMaker:
+        return PageTitles.cardMaker;
       default:
         return PageTitles.notFound;
     }
@@ -34,7 +34,7 @@ class Header extends React.Component<WithLocationProps> {
               }
               data-testid="mainLink"
             >
-              Main
+              {PageTitles.main}
             </NavLink>
             <NavLink
               to={RoutePath.aboutUs}
@@ -45,17 +45,17 @@ class Header extends React.Component<WithLocationProps> {
               }
               data-testid="aboutUsLink"
             >
-              About Us
+              {PageTitles.aboutUs}
             </NavLink>
             <NavLink
-              to={RoutePath.formPage}
+              to={RoutePath.cardMaker}
               className={(state) =>
                 state.isActive
                   ? `${styles.header__item} ${styles.header__item_active}`
                   : styles.header__item
               }
             >
-              Form page
+              {PageTitles.cardMaker}
             </NavLink>
           </nav>
         </div>

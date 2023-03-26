@@ -1,7 +1,7 @@
 enum RoutePath {
   main = '/',
   aboutUs = '/about-us',
-  formPage = '/form-page',
+  cardMaker = '/card-maker',
   notFound = '*',
 }
 
@@ -9,7 +9,7 @@ enum PageTitles {
   main = 'Main',
   aboutUs = 'About Us',
   notFound = '404',
-  formPage = 'Form',
+  cardMaker = 'Card Maker',
 }
 
 enum LocalStoragePath {
