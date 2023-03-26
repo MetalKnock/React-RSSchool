@@ -56,58 +56,39 @@ class Form extends React.PureComponent<FormProps, GeneratorState> {
   handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const currentErrors: Errors = {
-      name: false,
-      birthday: false,
-      country: false,
-      agreement: false,
-      gender: false,
-      avatar: false,
-    };
-
-    if (!this.nameRef.current?.value) {
-      currentErrors.name = true;
-    }
-
-    if (!this.birthdayRef.current?.value) {
-      currentErrors.birthday = true;
-    }
-
-    if (this.countryRef.current?.value === 'Pick a country') {
-      currentErrors.country = true;
-    }
-
-    if (!this.agreementRef.current?.checked) {
-      currentErrors.agreement = true;
-    }
-
-    if (!this.maleRef.current?.checked && !this.femaleRef.current?.checked) {
-      currentErrors.gender = true;
-    }
-
-    if (!this.avatarRef.current?.value) {
-      currentErrors.avatar = true;
-    }
-
-    this.setState((prevState) => {
-      return { ...prevState, errors: currentErrors };
-    });
-
-    if (Object.values(currentErrors).every((currentError) => !currentError)) {
-      const { addHuman } = this.props;
-      addHuman({
-        id: uuidv4(),
-        name: this.nameRef.current?.value || '',
-        birthday: this.birthdayRef.current?.value || '',
-        country: this.countryRef.current?.value || '',
-        agreement: this.agreementRef.current?.checked || false,
-        gender: this.maleRef.current?.checked ? 'male' : 'female',
-        avatar: this.avatarRef?.current?.files
-          ? URL.createObjectURL(this.avatarRef.current.files[0])
-          : '',
-      });
-      this.formRef.current?.reset();
-    }
+    this.setState(
+      (prevState) => {
+        return {
+          ...prevState,
+          errors: {
+            name: !this.nameRef.current?.value,
+            birthday: !this.birthdayRef.current?.value,
+            country: this.countryRef.current?.value === 'Pick a country',
+            agreement: !this.agreementRef.current?.checked,
+            gender: !this.maleRef.current?.checked && !this.femaleRef.current?.checked,
+            avatar: !this.avatarRef.current?.value,
+          },
+        };
+      },
+      () => {
+        const { errors } = this.state;
+        if (Object.values(errors).every((error) => !error)) {
+          const { addHuman } = this.props;
+          addHuman({
+            id: uuidv4(),
+            name: this.nameRef.current?.value || '',
+            birthday: this.birthdayRef.current?.value || '',
+            country: this.countryRef.current?.value || '',
+            agreement: this.agreementRef.current?.checked || false,
+            gender: this.maleRef.current?.checked ? 'male' : 'female',
+            avatar: this.avatarRef?.current?.files
+              ? URL.createObjectURL(this.avatarRef.current.files[0])
+              : '',
+          });
+          this.formRef.current?.reset();
+        }
+      }
+    );
   };
 
   render() {
