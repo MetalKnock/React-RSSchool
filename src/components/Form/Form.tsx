@@ -155,7 +155,12 @@ class Form extends React.PureComponent<FormProps, GeneratorState> {
           errorMessage={ErrorMessages.avatar}
           isError={errors.avatar}
         >
-          <input type="file" id="avatar" ref={this.avatarRef} />
+          <input
+            type="file"
+            id="avatar"
+            ref={this.avatarRef}
+            accept="image/png, image/gif, image/jpeg"
+          />
         </InputContainer>
         <InputContainer
           labelMessage=""

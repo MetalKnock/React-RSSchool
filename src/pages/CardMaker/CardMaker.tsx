@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from '../../components/Form';
-import HumanList from '../../components/HumanList/HumanList';
+import { HumanList } from '../../components/HumanList';
 import { Toast } from '../../components/Toast';
 import { Human } from '../../shared/api/types';
 
