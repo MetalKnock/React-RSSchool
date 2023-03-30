@@ -1,0 +1,28 @@
+@import '../../app/styles/vars.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  &__list {
+    display: flex;
+    gap: 10px;
+    padding-left: 0;
+    justify-content: center;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 600;
+    color: $black;
+    @include transition;
+
+    &_active {
+      background-color: $gray-3;
+    }
+  }
+}
