@@ -1,0 +1,18 @@
+.inputContainer {
+  padding: 0 0 25px 0;
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    text-transform: capitalize;
+
+    &Message {
+      margin: 0 0 7px 0;
+    }
+  }
+
+  &__error {
+    position: absolute;
+    color: $red;
+  }
+}

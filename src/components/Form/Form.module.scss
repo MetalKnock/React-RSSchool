@@ -1,0 +1,36 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 1200px;
+  padding: 15px;
+  border-radius: 10px;
+  @include shadow;
+
+  &__input {
+    border: 1px solid $gray-5;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+  }
+
+  &__gender {
+    position: relative;
+    padding: 0 0 25px 0;
+
+    &Inner {
+      display: flex;
+      gap: 10px;
+    }
+
+    &Error {
+      position: absolute;
+      color: $red;
+    }
+  }
+
+  &__label {
+    display: flex;
+    gap: 5px;
+  }
+}

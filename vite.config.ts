@@ -17,4 +17,11 @@ export default defineConfig({
       all: true,
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "./src/app/styles/vars";`,
+      },
+    },
+  },
 });

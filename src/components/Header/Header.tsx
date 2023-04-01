@@ -12,6 +12,8 @@ class Header extends React.Component<WithLocationProps> {
         return PageTitles.main;
       case RoutePath.aboutUs:
         return PageTitles.aboutUs;
+      case RoutePath.cardMaker:
+        return PageTitles.cardMaker;
       default:
         return PageTitles.notFound;
     }
@@ -19,33 +21,45 @@ class Header extends React.Component<WithLocationProps> {
 
   render() {
     return (
-      <div className={`${styles.header} container`}>
-        <h4>{this.defineCurrentPage()}</h4>
-        <nav className={styles.header__list}>
-          <NavLink
-            to={RoutePath.main}
-            className={(state) =>
-              state.isActive
-                ? `${styles.header__item} ${styles.header__item_active}`
-                : styles.header__item
-            }
-            data-testid="mainLink"
-          >
-            Main
-          </NavLink>
-          <NavLink
-            to={RoutePath.aboutUs}
-            className={(state) =>
-              state.isActive
-                ? `${styles.header__item} ${styles.header__item_active}`
-                : styles.header__item
-            }
-            data-testid="aboutUsLink"
-          >
-            About Us
-          </NavLink>
-        </nav>
-      </div>
+      <header className={styles.header}>
+        <div className={`${styles.header__container} container`}>
+          <h4>{this.defineCurrentPage()}</h4>
+          <nav className={styles.header__list}>
+            <NavLink
+              to={RoutePath.main}
+              className={(state) =>
+                state.isActive
+                  ? `${styles.header__item} ${styles.header__item_active}`
+                  : styles.header__item
+              }
+              data-testid="mainLink"
+            >
+              {PageTitles.main}
+            </NavLink>
+            <NavLink
+              to={RoutePath.aboutUs}
+              className={(state) =>
+                state.isActive
+                  ? `${styles.header__item} ${styles.header__item_active}`
+                  : styles.header__item
+              }
+              data-testid="aboutUsLink"
+            >
+              {PageTitles.aboutUs}
+            </NavLink>
+            <NavLink
+              to={RoutePath.cardMaker}
+              className={(state) =>
+                state.isActive
+                  ? `${styles.header__item} ${styles.header__item_active}`
+                  : styles.header__item
+              }
+            >
+              {PageTitles.cardMaker}
+            </NavLink>
+          </nav>
+        </div>
+      </header>
     );
   }
 }

@@ -1,0 +1,22 @@
+.toast {
+  position: fixed;
+  right: 10%;
+  bottom: 5%;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-color: $green;
+  @include transition;
+
+  &_show {
+    display: block;
+  }
+
+  &_hidden {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+}

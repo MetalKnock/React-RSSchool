@@ -22,5 +22,14 @@ interface Character {
   url: string;
   created: string;
 }
+interface Human {
+  id: string;
+  name: string;
+  birthday: string;
+  country: string;
+  agreement: boolean;
+  gender: string;
+  avatar: string;
+}
 
-export { Character };
+export { Character, Human };
