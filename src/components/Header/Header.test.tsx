@@ -2,16 +2,14 @@ import { describe, expect } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Header } from '.';
-import { WithLocation } from '../../hoc/WithLocation';
+
 import { PageTitles } from '../../shared/config/constants';
 
 describe('Header', () => {
-  const HeaderWithLocation = WithLocation(Header);
-
   beforeEach(() => {
     render(
       <MemoryRouter initialEntries={['/abc']}>
-        <HeaderWithLocation />
+        <Header />
       </MemoryRouter>
     );
   });

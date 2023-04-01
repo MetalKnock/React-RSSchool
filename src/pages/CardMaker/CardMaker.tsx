@@ -1,50 +1,25 @@
-import React from 'react';
+import { useState } from 'react';
 import { Form } from '../../components/Form';
 import { HumanList } from '../../components/HumanList';
 import { Toast } from '../../components/Toast';
 import { Human } from '../../shared/api/types';
 
-interface GeneratorState {
-  humans: Human[];
-  isAlertVisible: boolean;
-}
+export default function CardMaker() {
+  const [humans, setHumans] = useState<Human[]>([]);
+  const [showToast, setShowToast] = useState(false);
 
-class CardMaker extends React.Component<Record<string, never>, GeneratorState> {
-  constructor(props: never) {
-    super(props);
-
-    this.state = {
-      humans: [],
-      isAlertVisible: false,
-    };
-  }
-
-  addHuman = (human: Human) => {
-    const { humans } = this.state;
-    this.setState(
-      (prevState) => {
-        return { ...prevState, humans: [...humans, human], isAlertVisible: true };
-      },
-      () => {
-        setTimeout(() => {
-          this.setState((prevState) => {
-            return { ...prevState, isAlertVisible: false };
-          });
-        }, 2000);
-      }
-    );
+  const addHuman = (human: Human) => {
+    setHumans([...humans, human]);
+    setShowToast(true);
   };
 
-  render() {
-    const { humans, isAlertVisible } = this.state;
-    return (
-      <div className="container">
-        <Form addHuman={this.addHuman} />
-        <HumanList humans={humans} />
-        <Toast notification="Data saved" show={isAlertVisible} />
-      </div>
-    );
-  }
-}
+  const closeToast = () => setShowToast(false);
 
-export default CardMaker;
+  return (
+    <div className="container">
+      <Form addHuman={addHuman} />
+      <HumanList humans={humans} />
+      <Toast notification="Data saved" showToast={showToast} onClose={closeToast} />
+    </div>
+  );
+}
