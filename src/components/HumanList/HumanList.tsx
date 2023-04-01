@@ -1,4 +1,3 @@
-import React from 'react';
 import { Human } from '../../shared/api/types';
 import { HumanCard } from '../HumanCard';
 
@@ -8,18 +7,12 @@ interface HumanListProps {
   humans: Human[];
 }
 
-class HumanList extends React.PureComponent<HumanListProps> {
-  render() {
-    const { humans } = this.props;
-
-    return (
-      <ul className={styles.humanList}>
-        {humans.map((human) => (
-          <HumanCard key={human.id} human={human} />
-        ))}
-      </ul>
-    );
-  }
+export default function HumanList({ humans }: HumanListProps) {
+  return (
+    <ul className={styles.humanList}>
+      {humans.map((human) => (
+        <HumanCard key={human.id} human={human} />
+      ))}
+    </ul>
+  );
 }
-
-export default HumanList;
