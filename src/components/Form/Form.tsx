@@ -22,6 +22,7 @@ export default function Form({ addHuman }: FormProps) {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const { name, birthday, country, agreement, gender, avatar } = data;
+    console.log(data);
     addHuman({
       id: uuidv4(),
       name,
@@ -85,6 +86,7 @@ export default function Form({ addHuman }: FormProps) {
               className={styles.form__input}
               type="radio"
               id="male"
+              value="male"
               {...register('gender', { required: ErrorMessages.genderRequired })}
             />
           </label>
@@ -94,6 +96,7 @@ export default function Form({ addHuman }: FormProps) {
               className={styles.form__input}
               type="radio"
               id="female"
+              value="female"
               {...register('gender', { required: ErrorMessages.genderRequired })}
             />
           </label>

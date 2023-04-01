@@ -13,7 +13,7 @@ type FormValues = {
   country: string;
   avatar: FileList;
   agreement: boolean;
-  gender: 'male' | 'female';
+  gender: string;
 };
 
 enum ErrorMessages {
