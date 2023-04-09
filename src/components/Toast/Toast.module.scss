@@ -19,4 +19,8 @@
     height: 0;
     overflow: hidden;
   }
+
+  &_error {
+    background-color: $red;
+  }
 }

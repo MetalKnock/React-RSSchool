@@ -26,4 +26,15 @@ const LOCALE = 'en-US';
 
 const API_BASE = 'https://rickandmortyapi.com/api';
 
-export { RoutePath, LocalStoragePath, PageTitles, ApiPath, KEY_LOCAL_STORAGE, LOCALE, API_BASE };
+const STATUS_ERROR = 404;
+
+export {
+  RoutePath,
+  LocalStoragePath,
+  PageTitles,
+  ApiPath,
+  KEY_LOCAL_STORAGE,
+  LOCALE,
+  API_BASE,
+  STATUS_ERROR,
+};
