@@ -22,6 +22,7 @@ interface Character {
   url: string;
   created: string;
 }
+
 interface Human {
   id: string;
   name: string;
@@ -32,4 +33,14 @@ interface Human {
   avatar: string;
 }
 
-export { Character, Human };
+interface GetCharacters {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+  results: Character[];
+}
+
+export { Character, Human, GetCharacters };

@@ -16,8 +16,14 @@ enum LocalStoragePath {
   searchValue = 'searchValue',
 }
 
+enum ApiPath {
+  character = '/character',
+}
+
 const KEY_LOCAL_STORAGE = 'MetalKnock-React';
 
 const LOCALE = 'en-US';
 
-export { RoutePath, LocalStoragePath, PageTitles, KEY_LOCAL_STORAGE, LOCALE };
+const API_BASE = 'https://rickandmortyapi.com/api';
+
+export { RoutePath, LocalStoragePath, PageTitles, ApiPath, KEY_LOCAL_STORAGE, LOCALE, API_BASE };
