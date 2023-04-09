@@ -22,7 +22,6 @@ export default function Form({ addHuman }: FormProps) {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const { name, birthday, country, agreement, gender, avatar } = data;
-    console.log(data);
     addHuman({
       id: uuidv4(),
       name,
