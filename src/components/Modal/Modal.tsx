@@ -13,7 +13,7 @@ export default function Modal({ character, closeModal }: ModalProps) {
   };
 
   return (
-    <button className={styles.modal} type="button" onClick={closeModal}>
+    <div className={styles.modal} onClick={closeModal}>
       <div className={styles.modal__container} onClick={handleClick}>
         <div className={styles.leftColumn}>
           <img
@@ -67,10 +67,15 @@ export default function Modal({ character, closeModal }: ModalProps) {
             </li>
           </ul>
         </div>
-        <button className={styles.modal__close} type="button" onClick={closeModal}>
+        <button
+          className={styles.modal__close}
+          type="button"
+          onClick={closeModal}
+          data-testid="closeModal"
+        >
           {}
         </button>
       </div>
-    </button>
+    </div>
   );
 }

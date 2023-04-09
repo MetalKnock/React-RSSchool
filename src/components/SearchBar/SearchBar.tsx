@@ -25,11 +25,11 @@ export default function SearchBar({ setCharacters, setIsLoading }: SearchBarProp
   const fetchingCharacters = async (query: string, errorMessage: string) => {
     try {
       setIsLoading(true);
-      const { result, status } = await searchCharacters(query);
+      const { result, status, ok } = await searchCharacters(query);
       if (result) {
         setCharacters(result.results);
       }
-      if (status === STATUS_ERROR) {
+      if (status === STATUS_ERROR || !ok) {
         throw new Error(errorMessage);
       }
     } catch (e) {
@@ -81,7 +81,9 @@ export default function SearchBar({ setCharacters, setIsLoading }: SearchBarProp
             />
           </label>
         </div>
-        <Button isSubmit>Search</Button>
+        <Button isSubmit data-testid="submit" disabled={!searchValue}>
+          Search
+        </Button>
       </form>
       <Toast notification={error} showToast={showToast} onClose={closeToast} isError />
     </>

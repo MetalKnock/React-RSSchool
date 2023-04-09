@@ -22,7 +22,7 @@ export default function Main() {
         </ul>
       )}
       {characters && <CardList characters={characters} />}
-      {!characters && !isLoading && (
+      {!characters && !isLoading && characters !== null && (
         <h2 className={styles.main__error}>Nothing was found. Enter another search term.</h2>
       )}
     </div>

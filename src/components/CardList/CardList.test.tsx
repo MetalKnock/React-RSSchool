@@ -8,7 +8,7 @@ describe('CardList', () => {
     render(<CardList characters={characters} />);
     const list = screen.getByRole('list');
     const { getAllByRole } = within(list);
-    const items = getAllByRole('listitem');
+    const items = getAllByRole('menuitem');
     expect(items.length).toBe(characters.length);
   });
 });

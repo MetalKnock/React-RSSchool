@@ -16,7 +16,7 @@ export default function Card({ character }: CardProps) {
 
   return (
     <>
-      <button type="button" className={styles.card} onClick={openModal}>
+      <li className={styles.card} onClick={openModal} role="menuitem">
         <div className={styles.card__header}>
           <img
             className={styles.card__image}
@@ -34,7 +34,7 @@ export default function Card({ character }: CardProps) {
             Number of episodes: {character.episode.length}
           </div>
         </div>
-      </button>
+      </li>
       {isOpenModal && <Modal character={character} closeModal={closeModal} />}
     </>
   );

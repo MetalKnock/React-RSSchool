@@ -17,4 +17,9 @@
   &:hover {
     background-color: $second-hover;
   }
+
+  &:disabled {
+    cursor: default;
+    background-color: $second-disabled;
+  }
 }
