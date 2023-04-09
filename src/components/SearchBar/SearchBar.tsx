@@ -4,8 +4,15 @@ import { getLocalStorage } from '../../shared/lib/getLocalStorage';
 import { Button } from '../UI/Button';
 import imageUrl from './assets/searchIcon.svg';
 import styles from './SearchBar.module.scss';
+import { searchCharacter } from '../../shared/api';
+import { Character } from '../../shared/api/types';
 
-export default function SearchBar() {
+interface SearchBarProps {
+  setCharacters: React.Dispatch<React.SetStateAction<Character[] | null>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function SearchBar({ setCharacters, setIsLoading }: SearchBarProps) {
   const [searchValue, setSearchValue] = useState(
     getLocalStorage(LocalStoragePath.searchValue) || ''
   );
@@ -25,8 +32,22 @@ export default function SearchBar() {
     };
   }, []);
 
+  const fetching = async (query: string) => {
+    try {
+      setIsLoading(true);
+      const { result } = await searchCharacter(query);
+      if (result) {
+        setCharacters(result.results);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    setIsLoading(false);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    fetching(`/?name=${searchValue}`);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
