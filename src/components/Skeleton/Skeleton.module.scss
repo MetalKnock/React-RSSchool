@@ -1,0 +1,40 @@
+.skeleton {
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    width: 100%;
+    height: 350px;
+
+    background-color: $skeleton-color;
+    border-radius: 10px;
+
+    animation: color 4s infinite;
+  }
+
+  &__footer {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+
+    background-color: $skeleton-color;
+    border-radius: 10px;
+
+    animation: color 4s infinite;
+  }
+}
+
+@keyframes color {
+  0% {
+    background-color: $skeleton-color;
+  }
+
+  50% {
+    background-color: $skeleton-color-2;
+  }
+
+  /* stylelint-disable */
+  0% {
+    background-color: $skeleton-color;
+  }
+}

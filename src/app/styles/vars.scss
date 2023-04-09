@@ -2,25 +2,26 @@ $main: #f7f5fa;
 $gray-3: #eeeaf5;
 $gray-5: #a8a6ac;
 $gray-7: #2a282f;
+$gray-7-50: #2a282f66;
 $white: white;
 $text-color: white;
 $black: black;
 $second: #483efb;
+$second-disabled: #4d4c66;
 $second-hover: #002756;
 $red: #ff0915;
 $green: #0fa80f;
-
+$skeleton-color: #e0e0e2;
+$skeleton-color-2: #efeff1;
 $sm: 36em;
 $md: 48em;
 $lg: 62em;
 $gl: 64em;
 $xl: 75em;
-
 $col-sm: 540px;
 $col-md: 720px;
 $col-lg: 960px;
 $col-xl: 1140px;
-
 $breakpoints: (
   sm: $sm,
   md: $md,
@@ -37,15 +38,9 @@ $breakpoints: (
 }
 
 @mixin shadow {
-  -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.15);
-  -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.15);
-  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.15);
+  box-shadow: 0 5px 10px 2px rgb(34 60 80 / 15%);
 }
 
 @mixin transition {
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }

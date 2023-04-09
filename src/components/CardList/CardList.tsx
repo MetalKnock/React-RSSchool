@@ -1,8 +1,12 @@
-import { characters } from '../../shared/api/mock';
+import { Character } from '../../shared/api/types';
 import { Card } from '../Card';
 import styles from './CardList.module.scss';
 
-export default function CardList() {
+interface CardListProps {
+  characters: Character[];
+}
+
+export default function CardList({ characters }: CardListProps) {
   return (
     <ul className={styles.cardList}>
       {characters.map((character) => (
