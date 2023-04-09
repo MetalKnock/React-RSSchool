@@ -1,14 +1,18 @@
 .button {
-  display: flex;
-  border-radius: 5px;
-  padding: 10px;
-  border: none;
-  justify-content: center;
-  align-items: center;
-  background-color: $second;
-  color: $main;
-  cursor: pointer;
   @include transition;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+
+  color: $main;
+
+  background-color: $second;
+  border: none;
+  border-radius: 5px;
 
   &:hover {
     background-color: $second-hover;

@@ -1,11 +1,13 @@
 .humanCard {
+  @include shadow;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   text-align: center;
-  border-radius: 10px;
+
   background-color: $white;
-  @include shadow;
+  border-radius: 10px;
 
   &__background {
     border-radius: 10px 10px 0 0;
@@ -13,7 +15,7 @@
 
   &__container {
     position: relative;
-    padding: 75px 10px 10px 10px;
+    padding: 75px 10px 10px;
   }
 
   &__avatar {
@@ -21,10 +23,12 @@
     top: -80px;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 50%;
+
     width: 150px;
     height: 150px;
+
     border: 5px solid $white;
+    border-radius: 50%;
   }
 
   &__text {
@@ -38,7 +42,8 @@
     margin: 10px 0;
   }
 }
-@media (max-width: 991px) {
+
+@media (width <= 991px) {
   .humanCard {
     &__avatar {
       top: -50px;

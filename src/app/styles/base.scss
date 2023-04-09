@@ -1,9 +1,4 @@
 .container {
-  position: relative;
-  margin: 0 auto;
-  padding-right: 1rem;
-  padding-left: 1rem;
-  width: 100%;
 
   @include mq(sm) {
     max-width: $col-sm;
@@ -20,8 +15,15 @@
   @include mq(xl) {
     max-width: $col-xl;
   }
+  position: relative;
+
+  width: 100%;
+  margin: 0 auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
-@media (max-width: 600px) {
+
+@media (width <= 600px) {
   .container {
     padding: 0;
   }
