@@ -1,23 +1,15 @@
 .skeleton {
   display: flex;
   flex-direction: column;
-  animation: color 4s infinite;
-
-  @keyframes color {
-    0% {
-      color: $skeleton-color;
-    }
-
-    100% {
-      transform: $skeleton-color2;
-    }
-  }
 
   &__image {
     width: 100%;
     height: 350px;
-    background: $skeleton-color;
+
+    background-color: $skeleton-color;
     border-radius: 10px;
+
+    animation: color 4s infinite;
   }
 
   &__footer {
@@ -25,7 +17,24 @@
     height: 100px;
     margin-top: 10px;
 
-    background: $skeleton-color;
+    background-color: $skeleton-color;
     border-radius: 10px;
+
+    animation: color 4s infinite;
+  }
+}
+
+@keyframes color {
+  0% {
+    background-color: $skeleton-color;
+  }
+
+  50% {
+    background-color: $skeleton-color-2;
+  }
+
+  /* stylelint-disable */
+  0% {
+    background-color: $skeleton-color;
   }
 }

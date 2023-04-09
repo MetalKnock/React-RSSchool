@@ -4,7 +4,7 @@ import { SearchBar } from '../../components/SearchBar';
 import styles from './Main.module.scss';
 
 import { Character } from '../../shared/api/types';
-import Skeleton from '../../components/Skeleton/Skeleton';
+import { Skeleton } from '../../components/Skeleton';
 
 export default function Main() {
   const [characters, setCharacters] = useState<Character[] | null>(null);
@@ -22,6 +22,9 @@ export default function Main() {
         </ul>
       )}
       {characters && <CardList characters={characters} />}
+      {!characters && !isLoading && (
+        <h2 className={styles.main__error}>Nothing was found. Enter another search term.</h2>
+      )}
     </div>
   );
 }

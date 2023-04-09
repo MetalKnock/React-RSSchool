@@ -22,10 +22,6 @@ export default function SearchBar({ setCharacters, setIsLoading }: SearchBarProp
 
   const searchRef = useRef<string | null>(null);
 
-  useEffect(() => {
-    searchRef.current = searchValue;
-  }, [searchValue]);
-
   const fetchingCharacters = async (query: string, errorMessage: string) => {
     try {
       setIsLoading(true);
@@ -59,6 +55,10 @@ export default function SearchBar({ setCharacters, setIsLoading }: SearchBarProp
   };
 
   const closeToast = () => setShowToast(false);
+
+  useEffect(() => {
+    searchRef.current = searchValue;
+  }, [searchValue]);
 
   useEffect(() => {
     fetchingCharacters(`/?name=${searchValue}`, 'Nothing found');
