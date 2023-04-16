@@ -1,28 +1,44 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { CardList } from '../../components/CardList';
 import { SearchBar } from '../../components/SearchBar';
+import { Skeleton } from '../../components/Skeleton';
+import { characterApi } from '../../shared/store/services/characterService';
+import { useAppDispatch, useAppSelector } from '../../shared/hooks/redux';
+import { showToast } from '../../shared/store/reducers/toastSlice';
 import styles from './Main.module.scss';
 
-import { Character } from '../../shared/api/types';
-import { Skeleton } from '../../components/Skeleton';
-
 export default function Main() {
-  const [characters, setCharacters] = useState<Character[] | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const { search } = useAppSelector((state) => state.characters);
+  const {
+    data: getCharacters,
+    isFetching,
+    error,
+    refetch,
+  } = characterApi.useFetchCharactersQuery(search);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (error && 'error' in error) {
+      dispatch(showToast({ message: error.error, isErrorToast: true }));
+    }
+  }, [error, dispatch, refetch]);
 
   return (
     <div className={`container ${styles.main}`}>
-      <SearchBar setCharacters={setCharacters} setIsLoading={setIsLoading} />
+      <SearchBar />
 
-      {isLoading && (
+      {isFetching && (
         <ul className={styles.main__skeletons}>
           {[1, 2, 3, 4, 5, 6, 7].map((n) => (
             <Skeleton key={n} />
           ))}
         </ul>
       )}
-      {characters && <CardList characters={characters} />}
-      {!characters && !isLoading && characters !== null && (
+      {!isFetching && !error && getCharacters && getCharacters.results.length > 0 && (
+        <CardList characters={getCharacters.results} />
+      )}
+      {error && !isFetching && (
         <h2 className={styles.main__error}>Nothing was found. Enter another search term.</h2>
       )}
     </div>

@@ -1,11 +1,17 @@
-import { describe, expect, vi } from 'vitest';
+import { describe, expect } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import { Form } from '.';
 import { ErrorMessages } from './config';
+import { store } from '../../app';
 
 describe('Form', () => {
   it('it should display error messages when creating a card with incomplete form data', async () => {
-    render(<Form addHuman={vi.fn()} />);
+    render(
+      <Provider store={store}>
+        <Form />{' '}
+      </Provider>
+    );
     const submitButton = screen.getByRole('button', { name: /create card/i });
     fireEvent.click(submitButton);
 

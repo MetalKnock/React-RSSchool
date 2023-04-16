@@ -2,17 +2,15 @@
 import { useForm } from 'react-hook-form';
 import { SubmitHandler } from 'react-hook-form/dist/types';
 import { v4 as uuidv4 } from 'uuid';
-import { Human } from '../../shared/api/types';
 import { InputContainer } from '../InputContainer';
 import { Button } from '../UI/Button';
 import { ErrorMessages, FormValues, MAX_DATE, MIN_DATE } from './config';
+import { useAppDispatch } from '../../shared/hooks/redux';
+import { addHuman } from '../../shared/store/reducers/humansSlice';
+import { showToast } from '../../shared/store/reducers/toastSlice';
 import styles from './Form.module.scss';
 
-interface FormProps {
-  addHuman: (human: Human) => void;
-}
-
-export default function Form({ addHuman }: FormProps) {
+export default function Form() {
   const {
     register,
     formState: { errors },
@@ -20,17 +18,22 @@ export default function Form({ addHuman }: FormProps) {
     reset,
   } = useForm<FormValues>({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
 
+  const dispatch = useAppDispatch();
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const { name, birthday, country, agreement, gender, avatar } = data;
-    addHuman({
-      id: uuidv4(),
-      name,
-      birthday,
-      country,
-      agreement,
-      gender,
-      avatar: avatar.length ? URL.createObjectURL(avatar[0]) : '',
-    });
+    dispatch(
+      addHuman({
+        id: uuidv4(),
+        name,
+        birthday,
+        country,
+        agreement,
+        gender,
+        avatar: avatar.length ? URL.createObjectURL(avatar[0]) : '',
+      })
+    );
+    dispatch(showToast({ message: 'Data saved', isErrorToast: false }));
     reset();
   };
 
