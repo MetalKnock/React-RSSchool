@@ -1,32 +1,28 @@
 import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../shared/hooks/redux';
+import { hiddenToast } from '../../shared/store/reducers/toastSlice';
 import styles from './Toast.module.scss';
 
-interface ToastProps {
-  isError?: boolean;
-  notification: string;
-  showToast: boolean;
-  onClose: () => void;
-}
+export default function Toast() {
+  const { isVisible, message, isErrorToast } = useAppSelector((state) => state.toastSlice);
 
-export default function Toast({ isError, notification, showToast, onClose }: ToastProps) {
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      onClose();
+      if (isVisible) dispatch(hiddenToast());
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [showToast, onClose]);
+  }, [isVisible, dispatch]);
 
   return (
     <div
-      className={`${styles.toast} ${showToast ? styles.toast_show : styles.toast_hidden} ${
-        isError ? styles.toast_error : ''
+      className={`${styles.toast} ${isVisible ? styles.toast_show : styles.toast_hidden} ${
+        isErrorToast ? styles.toast_error : ''
       }`}
     >
-      {notification}
+      {message}
     </div>
   );
 }
-Toast.defaultProps = {
-  isError: false,
-};
