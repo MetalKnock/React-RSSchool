@@ -113,7 +113,9 @@ export default function Form() {
           {...register('avatar', {
             required: ErrorMessages.avatarRequired,
             validate: (value) =>
-              value[0].type === ('image/jpeg' || 'image/gif' || 'image/jpeg') ||
+              value[0].type === 'image/jpeg' ||
+              value[0].type === 'image/png' ||
+              value[0].type === 'image/gif' ||
               ErrorMessages.avatarValidate,
           })}
         />
