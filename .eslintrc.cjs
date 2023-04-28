@@ -54,6 +54,7 @@ module.exports = {
         ignorePropertyModificationsFor: ['state'],
       },
     ],
+    'no-underscore-dangle': 'off',
   },
   settings: {
     react: {
