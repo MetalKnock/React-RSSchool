@@ -23,6 +23,6 @@
     "esm": true,
     "experimentalSpecifierResolution": "node"
   },
-  "include": ["./src/**/*", "styled.d.ts", "vite.config.ts", "server.ts"],
+  "include": [".eslintrc.cjs", "./src/**/*", "vite.config.ts", "server.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
