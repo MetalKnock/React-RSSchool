@@ -8,9 +8,8 @@ import { showToast } from '../../shared/store/reducers/toastSlice';
 import styles from './Main.module.scss';
 
 export default function Main() {
+  const [query, setQuery] = useState('');
   const { search } = useAppSelector((state) => state.characters);
-
-  const [query, setQuery] = useState(search);
 
   const {
     data: getCharacters,
