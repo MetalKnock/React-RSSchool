@@ -52,6 +52,7 @@ export default function Header() {
                 ? `${styles.header__item} ${styles.header__item_active}`
                 : styles.header__item
             }
+            data-testid="cardMaker"
           >
             {PageTitles.cardMaker}
           </NavLink>

@@ -38,7 +38,7 @@ export default function SearchBar() {
           />
         </label>
       </div>
-      <Button isSubmit data-testid="submit" disabled={Boolean(!searchValue)}>
+      <Button isSubmit dataTestid="submit" disabled={Boolean(!searchValue)}>
         Search
       </Button>
     </form>

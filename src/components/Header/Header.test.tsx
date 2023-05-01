@@ -37,4 +37,13 @@ describe('Header', () => {
 
     expect(headerLocation.textContent).toMatch(PageTitles.main);
   });
+
+  it('it should update the Header location correctly when clicking the Card Maker link on Header component with WithLocation HOC', () => {
+    const headerLocation = screen.getByRole('heading', { level: 4 });
+    const cardMaker = screen.getByTestId('cardMaker');
+
+    fireEvent.click(cardMaker);
+
+    expect(headerLocation.textContent).toMatch(PageTitles.cardMaker);
+  });
 });

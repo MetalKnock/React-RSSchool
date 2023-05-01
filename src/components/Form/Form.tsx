@@ -44,10 +44,11 @@ export default function Form() {
         <input
           className={styles.form__input}
           id="name"
+          data-testid="name"
           {...register('name', {
             required: ErrorMessages.nameRequired,
             pattern: {
-              value: /^[A-ZА-Я][a-zа-я]{1,}$/,
+              value: /^[A-ZА-Я][a-zа-я]+$/,
               message: ErrorMessages.namePattern,
             },
           })}
@@ -58,6 +59,7 @@ export default function Form() {
           className={styles.form__input}
           type="date"
           id="birthday"
+          data-testid="birthday"
           {...register('birthday', {
             required: ErrorMessages.birthdayRequired,
             validate: (value) =>
@@ -69,12 +71,15 @@ export default function Form() {
         <select
           className={styles.form__input}
           id="country"
+          data-testid="country"
           {...register('country', {
             validate: (value) => value !== 'Pick a country' || ErrorMessages.countryValidate,
           })}
         >
           <option>Pick a country</option>
-          <option value="russia">Russia</option>
+          <option value="russia" data-testid="russia">
+            Russia
+          </option>
           <option value="belarus">Belarus</option>
           <option value="armenia">Armenia</option>
         </select>
@@ -88,6 +93,7 @@ export default function Form() {
               className={styles.form__input}
               type="radio"
               id="male"
+              data-testid="male"
               value="male"
               {...register('gender', { required: ErrorMessages.genderRequired })}
             />
@@ -98,6 +104,7 @@ export default function Form() {
               className={styles.form__input}
               type="radio"
               id="female"
+              data-testid="female"
               value="female"
               {...register('gender', { required: ErrorMessages.genderRequired })}
             />
@@ -109,6 +116,7 @@ export default function Form() {
         <input
           type="file"
           id="avatar"
+          data-testid="avatar"
           accept="image/png, image/gif, image/jpeg"
           {...register('avatar', {
             required: ErrorMessages.avatarRequired,
@@ -126,13 +134,16 @@ export default function Form() {
           <input
             type="checkbox"
             id="agreement"
+            data-testid="agreement"
             {...register('agreement', {
               required: ErrorMessages.agreementRequired,
             })}
           />
         </div>
       </InputContainer>
-      <Button isSubmit>Create card</Button>
+      <Button isSubmit dataTestid="submit">
+        Create card
+      </Button>
     </form>
   );
 }

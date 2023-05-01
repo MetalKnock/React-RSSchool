@@ -3,13 +3,14 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { Form } from '.';
 import { ErrorMessages } from './config';
-import { store } from '../../app';
+import { setupStore } from '../../shared/store/store';
 
 describe('Form', () => {
   it('it should display error messages when creating a card with incomplete form data', async () => {
+    const store = setupStore();
     render(
       <Provider store={store}>
-        <Form />{' '}
+        <Form />
       </Provider>
     );
     const submitButton = screen.getByRole('button', { name: /create card/i });

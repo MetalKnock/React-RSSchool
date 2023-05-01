@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { CardList } from '../../components/CardList';
 import { SearchBar } from '../../components/SearchBar';
 import { Skeleton } from '../../components/Skeleton';
@@ -8,15 +8,21 @@ import { showToast } from '../../shared/store/reducers/toastSlice';
 import styles from './Main.module.scss';
 
 export default function Main() {
+  const [query, setQuery] = useState('');
   const { search } = useAppSelector((state) => state.characters);
+
   const {
     data: getCharacters,
     isFetching,
     error,
     refetch,
-  } = characterApi.useFetchCharactersQuery(search);
+  } = characterApi.useFetchCharactersQuery(query);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setQuery(search);
+  }, [search]);
 
   useEffect(() => {
     if (error && 'error' in error) {

@@ -31,4 +31,5 @@ enum ErrorMessages {
 const MIN_DATE = '1907-01-01';
 const MAX_DATE = '2023-01-01';
 
-export { Errors, ErrorMessages, FormValues, MIN_DATE, MAX_DATE };
+export type { Errors, FormValues };
+export { ErrorMessages, MIN_DATE, MAX_DATE };
