@@ -48,7 +48,7 @@ export default function Form() {
           {...register('name', {
             required: ErrorMessages.nameRequired,
             pattern: {
-              value: /^[A-ZА-Я][a-zа-я]{1,}$/,
+              value: /^[A-ZА-Я][a-zа-я]+$/,
               message: ErrorMessages.namePattern,
             },
           })}
