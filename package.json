@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "ts-node --esm ./server.ts",
+    "build": "tsc && vite build",
     "test": "vitest",
     "lint": "eslint ./src",
     "lint:css": "stylelint src",

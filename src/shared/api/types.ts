@@ -43,4 +43,4 @@ interface GetCharacters {
   results: Character[];
 }
 
-export { Character, Human, GetCharacters };
+export type { Character, Human, GetCharacters };
